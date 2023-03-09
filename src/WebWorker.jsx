@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-
 import workerScript from "./worker";
 
 const initialState = { num: 0, result: null, loadingMessage: "" };
