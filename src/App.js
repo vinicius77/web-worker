@@ -1,5 +1,11 @@
+import WebWorker from "./WebWorker";
+
 function App() {
-  return <div>Hello</div>;
+  return (
+    <div>
+      <WebWorker />
+    </div>
+  );
 }
 
 export default App;
