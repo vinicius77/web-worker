@@ -1,0 +1,24 @@
+FROM node:17-alpine
+
+# Docker needs to be installed
+# ref.: https://docs.docker.com/engine/install/ubuntu/ 
+
+# Create app directory
+WORKDIR /src
+
+# Install app dependencies
+COPY package.json /src/
+
+RUN yarn
+
+# Bundle app source
+ADD . /src/
+
+# For Node 17
+ENV NODE_OPTIONS=--openssl-legacy-provider
+
+RUN yarn run build
+
+CMD yarn start
+
+EXPOSE 8080
