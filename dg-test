@@ -5,22 +5,19 @@
 # gcloud configuration needs to be initialized before running this script.
 
 # Run 'gcloud init'
-# Choose [2], Create a new configuration
-# Give the configuration a name: webworker-test
-# Log in using the credentials that have access to the project
-# Choose the relevant cloud project: webworker-test
+# Choose [2] Create a new configuration
+# Enter configuration name: webworker-test
+# Choose the account you would like to use to perform operations
+# Pick cloud project to use: webworker-test
+
 # Choose 'Yes' when asked if you want to configure Google Compute Engine
 # Choose europe-west1-d
 
-gcloud config configurations activate webworker-test
-gcloud container clusters get-credentials webworker-test
-echo
-echo PRODUCTION gcloud configuration activated
 now=$(date +%Y%m%d%H%M%S)
 user=$(whoami)
-docker build -t gcr.io/webworker-test/webworker-test:$now-$user .
-docker push -t gcr.io/webworker-test/webworker-test:$now-$user
-docker push
+gcloud config configurations activate webworker-test
+docker build -t gcr.io/webworker-test/webworker-test:$now-$user -f Dockerfiletest .
+docker push gcr.io/webworker-test/webworker-test:$now-$user
 sleep 3
 echo
 echo Deployment done!
