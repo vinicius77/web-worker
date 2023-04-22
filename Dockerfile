@@ -10,16 +10,16 @@ WORKDIR /src
 COPY package*.json . 
 
 # Dev packages are not installed if you have NODE_ENV=production.
-RUN NODE_ENV=development npm install 
+RUN NODE_ENV=development yarn 
 
 # Bundle app source
 ADD . .
 
 EXPOSE 8080
 
-CMD ["npm" ,"start"]
+CMD ["yarn" ,"dev"]
 
 # test if works
-# sudo docker build -t vinicius77sub/webworker-test ./Dockerfiletest
+# sudo docker build -t vinicius77sub/webworker-test ./Dockerfile
 # sudo docker run -p 5000:8000 vinicius77sub/webworker-test
 # http://172.17.0.2:3000/
